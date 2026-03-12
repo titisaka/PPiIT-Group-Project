@@ -1,2 +1,2 @@
-./proof-of-concept/.env
-
+*.env
+secrets.txt
