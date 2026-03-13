@@ -12,7 +12,7 @@ import (
 var MongoClient *mongo.Client
 
 
-func ConnectDatabase() error {
+func ConnectDatabase() error { 
 	
 	err := godotenv.Load(".env")
 	if err != nil {
