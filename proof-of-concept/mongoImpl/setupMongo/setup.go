@@ -11,7 +11,6 @@ import (
 
 var MongoClient *mongo.Client
 
-
 func ConnectDatabase() error { 
 	
 	err := godotenv.Load(".env")
@@ -30,8 +29,8 @@ func ConnectDatabase() error {
 	client , err := mongo.Connect(opts)	
 	if err != nil {
 		return err 
-	}
+	}	
 
-	MongoClient = client	
+	MongoClient = client
 	return nil
 }
