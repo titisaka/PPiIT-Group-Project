@@ -1,0 +1,50 @@
+name: Staging Deploy
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      # Backend
+      - name: Install backend deps
+        working-directory: gateway
+        run: npm ci
+
+      - name: Test backend
+        working-directory: gateway
+        run: npm test
+
+      # Frontend
+      - name: Install frontend deps
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend (Electron)
+        working-directory: frontend
+        run: npm run build
+
+      # Example: build Electron distributable
+      - name: Package Electron App
+        working-directory: frontend
+        run: npm run electron:build
+
+      # ---- DEPLOY TO STAGING ----
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying to staging server..."
+          # Example placeholders:
+          # scp -r ./build user@staging-server:/app
+          # ssh user@staging-server "pm2 restart app"

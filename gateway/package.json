@@ -1,0 +1,19 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "sandil k",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mariadb": "^3.5.2"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
