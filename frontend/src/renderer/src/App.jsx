@@ -1,9 +1,8 @@
+import Inventory from "./InventoryPage/Inventory";
 
 export default function App() {
   return (
-    <>
-      <h1>Hello, World!</h1>
-    </>
+    <Inventory />
   )
 }
 
