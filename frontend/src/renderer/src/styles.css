@@ -1,0 +1,9 @@
+.inventory-table {
+    display: grid;
+    gap: 10px;
+    background-color: aliceblue;
+    border: 2px solid black;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8fr;
+}
+
