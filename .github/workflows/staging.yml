@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
           cache: 'npm'
 
       # Backend
@@ -43,8 +43,4 @@ jobs:
 
       # ---- DEPLOY TO STAGING ----
       - name: Deploy to Staging
-        run: |
-          echo "Deploying to staging server..."
-          # Example placeholders:
-          # scp -r ./build user@staging-server:/app
-          # ssh user@staging-server "pm2 restart app"
+        run: echo fuck staging

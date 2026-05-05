@@ -4,16 +4,18 @@
   "description": "",
   "license": "ISC",
   "author": "sandil k",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --cache",
+    "test": "jest"
   },
   "dependencies": {
-    "express": "^5.2.1",
-    "mariadb": "^3.5.2"
+    "dotenv": "^17.4.2",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "eslint": "^10.3.0",
     "jest": "^30.3.0"
   }
 }
