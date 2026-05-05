@@ -1,7 +1,8 @@
 import { createServer } from 'node:http';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
+const PORT = process.env.SERVER_PORT;
 
 const server = createServer(async (req, res) => {
     const pool = mysql.createPool({
@@ -78,6 +79,6 @@ server.on('connection', (socket) => {
     console.log('New Connection');//runs everytime someone connects
 })
 
-server.listen(3000);
+server.listen(PORT);
 
-console.log("listening on port 3000...")
+console.log("listening on port:" + PORT)
