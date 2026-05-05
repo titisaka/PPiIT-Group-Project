@@ -7,3 +7,23 @@
     grid-template-rows: 8fr;
 }
 
+#dashboard {
+    display: grid;
+    padding: 0%;
+    background-color: aliceblue;
+    border: 0px solid black;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8fr;
+}
+
+.row {
+    padding: 1%;
+    background-color: aliceblue;
+    border: 2px solid black;
+    margin: 0px;
+}
+
+.col-sm {
+    
+}
+

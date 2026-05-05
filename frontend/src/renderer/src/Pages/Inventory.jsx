@@ -8,8 +8,7 @@ export default function Inventory() {
   //<DashboardLayout />
   
   <div className="inventory-table">
-    <div>
-    </div>
+    <div></div>
     <div>Products</div>
     <div>Inventory</div>
     <div>Cashier</div>
