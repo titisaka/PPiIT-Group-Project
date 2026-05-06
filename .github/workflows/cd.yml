@@ -4,6 +4,7 @@ on:
   workflow_run:
     workflows: ["Development CI"]
     types: ["completed"]
+    branches: ["dev", "feature/**", "stage", "main"]  # Add this
 
 jobs:
   make-dev-builds:
