@@ -2,6 +2,6 @@ import '../styles.css'
 
 export default function Checkout() {
   return (
-    <div>Test</div>
+    <div>Checkout</div>
   )
 }
