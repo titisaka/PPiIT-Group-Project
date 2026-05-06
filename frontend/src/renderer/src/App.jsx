@@ -6,7 +6,7 @@ import DashboardLayout from "./Pages/DashboardLayout";
 
 export default function App() {
   return (
-    <DashboardLayout />
+    <Inventory />
   )
 }
 

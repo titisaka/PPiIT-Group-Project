@@ -1,19 +1,19 @@
 import "../styles.css"
-import "./DashboardLayout"
 import DashboardLayout from "./DashboardLayout";
 
 export default function Inventory() {
-  //Import all
   return (
-  //<DashboardLayout />
-  
-  <div className="inventory-table">
-    <div></div>
-    <div>Products</div>
-    <div>Inventory</div>
-    <div>Cashier</div>
-    <div></div>
-    <div></div>
-  </div>);
+    <div className="page-layout">
+
+      <DashboardLayout />
+      <div className="main-contents">
+        <div className="search-bar" id="inventory-search-bar">Search Bar</div>
+        <div className="inventory-table">
+          <div>Search</div>
+          <div>Inventory</div>
+          <div>Cashier</div>
+        </div>
+      </div>
+    </div>);
 }
 
