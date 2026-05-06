@@ -3,11 +3,12 @@ name: CD Backend
 on:
     workflow_run:
         workflows: [ "Developement CI" ]
-        types: [ "completed" ]
-        branches: [ "feature/gateway" ]
+        types:
+            - completed
 
 jobs:
     build-and-deploy-docker-images:
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
@@ -25,4 +26,6 @@ jobs:
           uses: docker/build-push-action@v7
           with:
               push: true
+              context: gateway/.
+              target: prod
               tags: randomdegen/ppit-gateway:latest
