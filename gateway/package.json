@@ -4,15 +4,16 @@
   "description": "",
   "license": "ISC",
   "author": "sandil k",
-  "type": "module",
-  "main": "index.js",
+  "type": "commonjs",
+  "main": "./src/server.js",
   "scripts": {
     "lint": "eslint --cache",
     "test": "jest"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.22.3"
   },
   "devDependencies": {
     "eslint": "^10.3.0",
