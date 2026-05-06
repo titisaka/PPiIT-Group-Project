@@ -1,7 +1,6 @@
 import Inventory from './Pages/Inventory'
-import Homepage from './Pages/Homepage'
 import Checkout from './Pages/Checkout'
-import ReceiptViewer from './Pages/Checkout'
+import ReceiptViewer from './Pages/ReceiptViewer'
 import { useState } from 'react'
 
 export default function App() {
@@ -10,39 +9,35 @@ export default function App() {
   function renderPage() {
     switch (currPage) {
       case 1:
-        return <Checkout />;
-      case 2:
         return <Inventory />;
-      case 3:
+      case 2:
         return <ReceiptViewer />;
+      case 3:
+        return <Checkout />;
       default:
-        return <Homepage />;
+        return <div>Select a page</div>;
     }
-
-    return (
-      <div className="page-layout">
-        {createDashboard()}
-        <div className="main-contents">
-          <div className="search-bar" id="inventory-search-bar">
-            Search Bar
-          </div>
-          <div className="main-content">
-            {renderPage()}
-          </div>
-        </div>
-      </div>
-
-    )
   }
 
-  function createDashboard() {
-    return (
+  return (
+    <div className="page-layout">
+
       <div className="sidebar">
         <h1>Dashboard</h1>
-        <h3 id="inventory" onClick={() => setPage(1)}>Inventory</h3>
-        <h3 id="receipts" onClick={() => setPage(2)}>Receipts</h3>
-        <h3 id="cashier" onClick={() => setPage(3)}>Cashier</h3>
-      </div> //End of grid
-    )
-  }
+        <h3 onClick={() => setPage(1)}>Inventory</h3>
+        <h3 onClick={() => setPage(2)}>Receipts</h3>
+        <h3 onClick={() => setPage(3)}>Cashier</h3>
+      </div>
+
+      <div className="main-contents">
+        <div className="search-bar">
+          Search Bar
+        </div>
+        <div className="main-content">
+          {renderPage()}
+        </div>
+      </div>
+    </div>
+
+  )
 }
