@@ -1,12 +1,5 @@
-import Inventory from "./Pages/Inventory";
-import Homepage from "./Pages/Homepage";
-import Checkout from "./Pages/Checkout";
-import ReceiptViewer from "./Pages/ReceiptViewer";
-import DashboardLayout from "./Pages/DashboardLayout";
+import Inventory from './Pages/Inventory'
 
 export default function App() {
-  return (
-    <Inventory />
-  )
+  return <Inventory />
 }
-
