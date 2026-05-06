@@ -1,5 +1,4 @@
 import '../styles.css'
-import DashboardLayout from './DashboardLayout'
 
 export default function Checkout() {
   return (
