@@ -7,9 +7,7 @@ on:
 on:
   workflow_run:
     workflows: ["Development CI"]
-    types: ["completed"]  workflow_run:
-    workflows: [ "Development CI" ]
-    types: [ "completed" ]
+    types: ["completed"]
     branches: [ "dev", "stage", "main" ]
 
 jobs:
@@ -73,50 +71,30 @@ jobs:
             $newName = "$env:APP_NAME-$env:APP_VERSION-$env:GIT_SHA-${{ matrix.os }}$ext"
             Copy-Item $_.FullName "release\$newName"
           }
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ matrix.os }}
-          path: release/
-
-  release:
-    name: Create GitHub Release
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: release
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: release/**/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
   build-and-deploy-docker-images:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Login to Docker Hub
-        uses: docker/login-action@v4
-        with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-      - name: Build and push
-        uses: docker/build-push-action@v7
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
         with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
           push: true
-          context: gateway/.
-          target: prod
           tags: randomdegen/ppit-gateway:latest
+          target: prod
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
