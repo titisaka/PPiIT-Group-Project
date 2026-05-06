@@ -24,18 +24,20 @@ export default function App() {
 
       <div className="sidebar">
         <h1>Dashboard</h1>
+      </div>
+
+      <div className="search-bar">
+        Search Bar
+      </div>
+
+      <div className="sidebar">
         <h3 onClick={() => setPage(1)}>Inventory</h3>
         <h3 onClick={() => setPage(2)}>Receipts</h3>
         <h3 onClick={() => setPage(3)}>Cashier</h3>
       </div>
 
-      <div className="main-contents">
-        <div className="search-bar">
-          Search Bar
-        </div>
-        <div className="main-content">
-          {renderPage()}
-        </div>
+      <div className="main-content">
+        {renderPage()}
       </div>
     </div>
 

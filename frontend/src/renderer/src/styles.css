@@ -1,32 +1,17 @@
-.inventory-table {
-    display: grid;
-    gap: 10px;
-    background-color: aliceblue;
-    border: 2px solid black;
-    grid-template-columns: 1fr;
-    grid-template-rows: 8fr;
-}
-
 .page-layout {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 4fr;
     height: 500px;
-}
-
-#dashboard {
-    display: grid;
-    padding: 0%;
-    background-color: aliceblue;
-    border: 0px solid black;
-    grid-template-columns: 1fr;
-    grid-template-rows: 8fr;
-}
-
-.row {
-    padding: 1%;
     background-color: aliceblue;
     border: 2px solid black;
-    margin: 0px;
 }
 
-.col-sm {}
+.sidebar {
+    display: grid;
+    padding: 0%;
+    border-right: 2px solid black;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr;
+}
+
