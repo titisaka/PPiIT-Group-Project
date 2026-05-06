@@ -1,5 +1,5 @@
 import "../styles.css"
-
+import DashboardLayout from "./DashboardLayout";
 export default function ReceiptViewer() {
     return (
         <div className="page-layout">
