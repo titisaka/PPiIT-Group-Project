@@ -1,10 +1,16 @@
-name: CD Frontend Build and Backend Deploy
+name: CD Frontend build
 
 on:
   workflow_run:
     workflows: ["Development CI"]
-    types: ["completed"]
-    branches: ["dev", "feature/**", "stage", "main"]  # Add this
+    types: ["completed"]on:
+on:
+  workflow_run:
+    workflows: ["Development CI"]
+    types: ["completed"]  workflow_run:
+    workflows: [ "Development CI" ]
+    types: [ "completed" ]
+    branches: [ "dev", "stage", "main" ]
 
 jobs:
   make-dev-builds:
@@ -27,16 +33,71 @@ jobs:
         with:
           node-version: 24
 
-      - name: Build/release Electron app
-        uses: Yan-Jobs/action-electron-builder@v1.7.0
-        with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+  
+      - name: Install dependencies
+        run: npm ci
 
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+      - name: Get app metadata
+        shell: bash
+        run: |
+          echo "APP_NAME=$(node -p \"require('./package.json').name\")" >> $GITHUB_ENV
+          echo "APP_VERSION=$(node -p \"require('./package.json').version\")" >> $GITHUB_ENV
+          echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Build Vite app
+        run: npm run build
+
+      - name: Build Electron app
+        run: npm run dist
+
+      - name: Prepare release artifacts (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          mkdir -p release
+          for file in dist/*; do
+            if [ -f "$file" ]; then
+              ext="${file##*.}"
+              new_name="${APP_NAME}-${APP_VERSION}-${GIT_SHA}-${{ matrix.os }}.${ext}"
+              cp "$file" "release/$new_name"
+            fi
+          done
+
+      - name: Prepare release artifacts (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force release | Out-Null
+          Get-ChildItem dist | ForEach-Object {
+            $ext = $_.Extension
+            $newName = "$env:APP_NAME-$env:APP_VERSION-$env:GIT_SHA-${{ matrix.os }}$ext"
+            Copy-Item $_.FullName "release\$newName"
+          }
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.os }}
+          path: release/
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
   build-and-deploy-docker-images:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
