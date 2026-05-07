@@ -75,8 +75,10 @@ jobs:
           path: release/
 
   release:
+    defaults:
+      run:
+        working-directory: ./frontend
     name: Create GitHub Release
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -95,6 +97,9 @@ jobs:
   build-and-deploy-docker-images:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./gateway
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -111,6 +116,6 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           push: true
-          context: gateway/.
+          context: .
           target: prod
           tags: randomdegen/ppit-gateway:latest
