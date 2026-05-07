@@ -14,6 +14,9 @@ const pool = mysql.createPool({
 });
 
 const server = http.createServer(async (req, res) => {
+     res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
     if (req.url === '/') {
         console.log('/');

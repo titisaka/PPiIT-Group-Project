@@ -1,17 +1,72 @@
+div {
+    border-radius: 5px;
+}
+
+
 .page-layout {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 4fr;
-    height: 500px;
-    background-color: aliceblue;
-    border: 2px solid black;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 8fr;
+    grid-gap: 1px;
+    height: 600px;
+    background-color: rgb(200, 234, 255);
+    border: 2px solid #1e1e1e;
+
+    div {
+        background-color: rgb(226, 244, 255);
+    }
+   
 }
 
 .sidebar {
-    display: grid;
+    grid-row: 1 / span 2;
     padding: 0%;
-    border-right: 2px solid black;
+    border-right: 2px solid slategray;
     grid-template-columns: 1fr;
     grid-template-rows: 5fr;
+    h3 , h1{
+        text-align: center;
+        border-radius: 5px;
+        background-color: lightskyblue;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 30;
+        :hover {
+            color: darkblue;
+        }
+    }
 }
 
+.search-bar {
+    align-content:center;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+
+.product-list{
+    grid-column: 2; 
+    grid-row: 2;
+    border: 2px solid slategray;
+    background-color: wheat;
+    height: 533px;
+    overflow-y: scroll;
+    overflow-y: scroll; 
+    .list-item {
+        overflow-x: visible;
+        border: 1px solid slategray;
+        background-color: lightgray; 
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        .item-value {
+            overflow: visible;
+            border-right: 1px solid slategray;
+            display: inline;
+            white-space: nowrap;
+            .end {
+                border-right: 0px;
+            }
+        }
+    }
+}
