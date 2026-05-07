@@ -34,13 +34,13 @@ export default function InventoryTable(props) {
             <li className="item-value">Stock</li>
             <li className="item-value">UnitPrice</li>
             <li className="item-value">ReorderLevel</li>
-            <li className="item-value">iReorderQuantity</li>
+            <li className="item-value">ReorderQuantity</li>
             <li className="item-value">DateRecieved</li>
             <li className="item-value">LastOrder</li>
             <li className="item-value">Expiration</li>
             <li className="item-value">Warehouse</li>
             <li className="item-value">SalesVolume</li>
-            <li className="item-value">InventoryTurnoveRate}</li>
+            <li className="item-value">InventoryTurnoveRate</li>
             <li className="item-value end">Status</li>
           </ul>
           {products.map(item => {
@@ -53,8 +53,8 @@ export default function InventoryTable(props) {
                 <li className="item-value">{item.UnitPrice}</li>
                 <li className="item-value">{item.ReorderLevel}</li>
                 <li className="item-value">{item.ReorderQuantity}</li>
-                <li className="item-value">{item.DateRecieved}</li>
-                <li className="item-value">{item.LastOrder}</li>
+                <li className="item-value">{item.DateRecieved.split('T')[0]}</li>
+                <li className="item-value">{item.LastOrder.split('T')[0]}</li>
                 <li className="item-value">{item.Expiration}</li>
                 <li className="item-value">{item.Warehouse}</li>
                 <li className="item-value">{item.SalesVolume}</li>

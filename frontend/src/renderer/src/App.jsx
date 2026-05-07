@@ -30,7 +30,7 @@ export default function App() {
       </div>
       <div className="search-bar">
         <form>
-          <input type='text'></input>
+          <input type='text' className="content-search" placeholder='Search...'></input>
         </form>
       </div>
       <div className="main-content">{renderPage()}</div>
