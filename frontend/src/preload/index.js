@@ -4,8 +4,8 @@ import { ipcRenderer } from 'electron/renderer'
 
 // Custom APIs for renderer
 const api = {
-  get: (path) => ipcRenderer.invoke('api-request', path),
-  post: (path) => ipcRenderer.invoke('api-request', path)
+  get: (path) => ipcRenderer.invoke('api-request', path,),
+  post: (path) => ipcRenderer.invoke('api-request', path,{method : 'POST'}),
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
