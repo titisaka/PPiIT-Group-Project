@@ -72,10 +72,10 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-ipcMain.handle("api-request", async (_, path, options = {}) => {
+ipcMain.handle('api-request', async (_, path, options = {}) => {
   const res = await fetch(`http://52.213.176.89${path}`, options)
 
-  const text = await res.text();
+  const text = await res.text()
 
   if (!res.ok) {
     throw new Error(text)

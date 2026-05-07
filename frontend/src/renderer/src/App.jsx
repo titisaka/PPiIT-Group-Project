@@ -5,12 +5,18 @@ import { useState } from 'react'
 
 export default function App() {
   const [currPage, setPage] = useState(0)
+  //to be used as multi-use prop in 3 main-content components
   const [searchText, setSearchText] = useState('')
+
+  function handleChange(e) {
+    e.preventDefault()
+    setSearchText(e.target.value)
+  }
 
   function renderPage() {
     switch (currPage) {
       case 1:
-        return <InventoryTable/>
+        return <InventoryTable filter={searchText} />
       case 2:
         return <ReceiptViewer />
       case 3:
@@ -30,7 +36,15 @@ export default function App() {
       </div>
       <div className="search-bar">
         <form>
-          <input type='text' className="content-search" placeholder='Search...'></input>
+          <label>
+            <input
+              type="text"
+              className="content-search"
+              value={searchText}
+              placeholder="Search..."
+              onChange={handleChange}
+            />
+          </label>
         </form>
       </div>
       <div className="main-content">{renderPage()}</div>

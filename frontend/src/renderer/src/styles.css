@@ -1,99 +1,99 @@
 div {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
-
 .page-layout {
-    margin: 10px;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 8fr;
-    grid-gap: 1px;
-    height: auto;
-    background-color: rgb(200, 234, 255);
-    border: 2px solid #1e1e1e;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 8fr;
+  grid-gap: 1px;
+  height: auto;
+  background-color: rgb(200, 234, 255);
+  border: 2px solid #1e1e1e;
 
-    div {
-        background-color: rgb(226, 244, 255);
-    }
-
+  div {
+    background-color: rgb(226, 244, 255);
+  }
 }
 
 .sidebar {
-    grid-row: 1 / span 2;
-    padding-top: 1%;
-    border-right: 2px solid slategray;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 5fr;
+  grid-row: 1 / span 2;
+  padding-top: 1%;
+  border-right: 2px solid slategray;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5fr;
 
-    h3,
-    h1 {
-        border: 1px solid slategray;
-        text-align: center;
-        border-radius: 5px;
-        background-color: lightskyblue;
-        margin-left: 5px;
-        margin-right: 5px;
-        padding: 30;
+  h3,
+  h1 {
+    border: 1px solid slategray;
+    text-align: center;
+    border-radius: 5px;
+    background-color: lightskyblue;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 30;
 
-        :hover {
-            color: darkblue;
-        }
+    :hover {
+      color: darkblue;
     }
+  }
 }
 
 .search-bar {
-    align-content: center;
-    grid-column: 2;
-    grid-row: 1;
-    border-bottom: 2px solid slategray;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+  align-content: center;
+  grid-column: 2;
+  grid-row: 1;
+  border-bottom: 2px solid slategray;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .content-search {
-    margin: 10px;
-    width: 600px
+  margin: 10px;
+  width: 600px;
 }
 
-
 .product-list {
-    grid-column: 2;
-    grid-row: 2;
-    border: 2px solid slategray;
-    background-color: wheat;
-    height: 533px;
-    overflow-y: scroll;
+  grid-column: 2;
+  grid-row: 2;
+  padding: 0px;
+  margin: 0px;
+  border: 2px solid slategray;
+  background-color: wheat;
+  height: 533px;
+  overflow-y: scroll;
 }
 
 .list-item {
-    display: grid;
-    min-width: 2000px;
-    grid-template-columns:
-        220px 100px 140px 80px 90px 120px 150px
-        140px 140px 200px 120px 120px 180px 80px;
-    overflow-x: visible;
-    border: 1px solid slategray;
+  display: grid;
+  min-width: 2000px;
+  grid-template-columns:
+    220px 100px 140px 80px 90px 120px 150px
+    140px 140px 200px 120px 120px 190px 80px;
+  overflow-x: visible;
+  border: 1px solid slategray;
+  background-color: lightgray;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  .button {
     background-color: lightgray;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  }
 }
 
 .item-value {
-    overflow: visible;
-    padding: 10px;
-    width: auto;
-    text-align: left;
-    border-right: 1px solid slategray;
-    display: inline;
-    white-space: nowrap;
+  overflow: visible;
+  padding: 10px;
+  width: auto;
+  text-align: left;
+  border-right: 1px solid slategray;
+  display: inline;
+  white-space: nowrap;
 }
 
-
-
 .end {
-    border-right: 0px;
+  border-right: 0px;
 }

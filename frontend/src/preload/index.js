@@ -4,12 +4,9 @@ import { ipcRenderer } from 'electron/renderer'
 
 // Custom APIs for renderer
 const api = {
-  get: (path) =>
-    ipcRenderer.invoke("api-request", path),
-  post : (path) =>
-    ipcRenderer.invoke("api-request", path),
+  get: (path) => ipcRenderer.invoke('api-request', path),
+  post: (path) => ipcRenderer.invoke('api-request', path)
 }
-
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
@@ -18,7 +15,7 @@ if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
-     } catch (error) {
+  } catch (error) {
     console.error(error)
   }
 } else {
