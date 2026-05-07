@@ -3,13 +3,7 @@ name: CD Frontend build
 on:
   workflow_run:
     workflows: ["Development CI"]
-    types: ["completed"]on:
-on:
-  workflow_run:
-    workflows: ["Development CI"]
-    types: ["completed"]  workflow_run:
-    workflows: [ "Development CI" ]
-    types: [ "completed" ]
+    types: ["completed"]
     branches: [ "dev", "stage", "main" ]
 
 jobs:
