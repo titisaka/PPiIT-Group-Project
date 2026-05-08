@@ -3,10 +3,13 @@ name: CD Frontend build
 on:
   workflow_run:
     workflows: ["Development CI"]
+<<<<<<< HEAD
     types: ["completed"]on:
 on:
   workflow_run:
     workflows: ["Development CI"]
+=======
+>>>>>>> dev
     types: ["completed"]
     branches: [ "dev", "stage", "main" ]
 
@@ -71,11 +74,46 @@ jobs:
             $newName = "$env:APP_NAME-$env:APP_VERSION-$env:GIT_SHA-${{ matrix.os }}$ext"
             Copy-Item $_.FullName "release\$newName"
           }
+<<<<<<< HEAD
+=======
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.os }}
+          path: release/
+
+  release:
+    defaults:
+      run:
+        working-directory: ./frontend
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> dev
         
   build-and-deploy-docker-images:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+<<<<<<< HEAD
 
+=======
+    defaults:
+      run:
+        working-directory: ./gateway
+>>>>>>> dev
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -94,6 +132,11 @@ jobs:
         with:
           context: ./backend
           push: true
+<<<<<<< HEAD
+=======
+          context: .
+          target: prod
+>>>>>>> dev
           tags: randomdegen/ppit-gateway:latest
           target: prod
           cache-from: type=gha
